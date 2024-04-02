@@ -562,7 +562,7 @@ public class AudioService extends MediaBrowserServiceCompat {
             stateBuilder.setExtras(extras);
         }
 
-        mediaSession.setPlaybackState(stateBuilder.build());
+//        mediaSession.setPlaybackState(stateBuilder.build());
         mediaSession.setRepeatMode(repeatMode);
         mediaSession.setShuffleMode(shuffleMode);
         mediaSession.setCaptioningEnabled(captioningEnabled);
@@ -646,9 +646,9 @@ public class AudioService extends MediaBrowserServiceCompat {
         // TODO: Look at setColorized
         if (config.notificationColor != -1)
             builder.setColor(config.notificationColor);
-        for (NotificationCompat.Action action : nativeActions) {
-            builder.addAction(action);
-        }
+//        for (NotificationCompat.Action action : nativeActions) {
+//            builder.addAction(action);
+//        }
         final MediaStyle style = new MediaStyle()
             .setMediaSession(mediaSession.getSessionToken());
         if (Build.VERSION.SDK_INT < 33) {
@@ -659,7 +659,7 @@ public class AudioService extends MediaBrowserServiceCompat {
             style.setCancelButtonIntent(buildMediaButtonPendingIntent(PlaybackStateCompat.ACTION_STOP));
             builder.setOngoing(true);
         }
-        builder.setStyle(style);
+//        builder.setStyle(style);
         return builder.build();
     }
 
