@@ -314,8 +314,8 @@ public class AudioService extends MediaBrowserServiceCompat {
         configure(new AudioServiceConfig(getApplicationContext()));
 
         mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_QUEUE_COMMANDS);
-        PlaybackStateCompat.Builder stateBuilder = new PlaybackStateCompat.Builder()
-                .setActions(AUTO_ENABLED_ACTIONS);
+        PlaybackStateCompat.Builder stateBuilder = new PlaybackStateCompat.Builder();
+//                .setActions(AUTO_ENABLED_ACTIONS);
         mediaSession.setPlaybackState(stateBuilder.build());
         mediaSession.setCallback(mediaSessionCallback = new MediaSessionCallback());
         setSessionToken(mediaSession.getSessionToken());
@@ -539,13 +539,13 @@ public class AudioService extends MediaBrowserServiceCompat {
         this.shuffleMode = shuffleMode;
 
         PlaybackStateCompat.Builder stateBuilder = new PlaybackStateCompat.Builder()
-                .setActions(AUTO_ENABLED_ACTIONS | actionBits)
+//                .setActions(AUTO_ENABLED_ACTIONS | actionBits)
                 .setState(getPlaybackState(), position, speed, updateTime)
                 .setBufferedPosition(bufferedPosition);
 
-        for (PlaybackStateCompat.CustomAction action : this.customActions) {
-            stateBuilder.addCustomAction(action);
-        }
+//        for (PlaybackStateCompat.CustomAction action : this.customActions) {
+//            stateBuilder.addCustomAction(action);
+//        }
 
         if (queueIndex != null)
             stateBuilder.setActiveQueueItemId(queueIndex);
@@ -562,7 +562,7 @@ public class AudioService extends MediaBrowserServiceCompat {
             stateBuilder.setExtras(extras);
         }
 
-//        mediaSession.setPlaybackState(stateBuilder.build());
+        mediaSession.setPlaybackState(stateBuilder.build());
         mediaSession.setRepeatMode(repeatMode);
         mediaSession.setShuffleMode(shuffleMode);
         mediaSession.setCaptioningEnabled(captioningEnabled);
